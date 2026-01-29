@@ -8,6 +8,8 @@ import { landlordSurvey } from '@/data/landlordSurvey';
 import { tenantSurvey } from '@/data/tenantSurvey';
 import { SurveyData, SurveyResponse } from '@/types/survey';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 export default function SurveyPage() {
   const { type } = useParams<{ type: 'landlord' | 'tenant' }>();
@@ -58,11 +60,43 @@ export default function SurveyPage() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsComplete(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    try {
+      // Extract contact info from responses
+      const name = responses['pilot_name'] as string || responses['early_access_name'] as string || null;
+      const email = responses['pilot_email'] as string || responses['early_access_email'] as string || null;
+      const phone = responses['pilot_phone'] as string || responses['early_access_phone'] as string || null;
+      const location = responses['property_location'] as string || responses['current_state'] as string || null;
+
+      const { error } = await supabase
+        .from('survey_responses')
+        .insert({
+          survey_type: type,
+          responses: responses,
+          completed: true,
+          name,
+          email,
+          phone,
+          location,
+          source: 'web',
+        });
+
+      if (error) {
+        console.error('Error submitting survey:', error);
+        toast.error('Failed to submit survey. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      toast.success('Survey submitted successfully!');
+      setIsComplete(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isComplete) {
