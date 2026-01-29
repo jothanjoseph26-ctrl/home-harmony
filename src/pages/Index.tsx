@@ -1,4 +1,4 @@
-import { Building2, Users, Gift, ArrowRight, Shield, Clock, TrendingUp } from 'lucide-react';
+import { Building2, Users, Gift, ArrowRight, Shield, Clock, TrendingUp, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -17,8 +17,14 @@ const Index = () => {
               </div>
               <span className="font-display text-xl font-bold text-primary-foreground">TenantlyNG</span>
             </div>
-            <div className="hidden items-center gap-4 md:flex">
-              <span className="text-sm text-primary-foreground/80">Research Survey 2025</span>
+            <div className="flex items-center gap-4">
+              <span className="hidden md:inline text-sm text-primary-foreground/80">Research Survey 2025</span>
+              <Link to="/auth">
+                <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                  <LayoutDashboard className="h-4 w-4 mr-2" />
+                  Dashboard
+                </Button>
+              </Link>
             </div>
           </nav>
 
@@ -42,7 +48,7 @@ const Index = () => {
         {/* Decorative wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 50L60 45C120 40 240 30 360 35C480 40 600 60 720 65C840 70 960 60 1080 50C1200 40 1320 30 1380 25L1440 20V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0V50Z" fill="hsl(140 20% 98%)"/>
+            <path d="M0 50L60 45C120 40 240 30 360 35C480 40 600 60 720 65C840 70 960 60 1080 50C1200 40 1320 30 1380 25L1440 20V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0V50Z" fill="hsl(220 25% 98%)"/>
           </svg>
         </div>
       </header>
