@@ -1,6 +1,8 @@
 import { Building2, Users, Gift, ArrowRight, Shield, Clock, TrendingUp, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import logoWhite from '@/assets/tenantly-logo-white.png';
+import logo from '@/assets/tenantly-logo.png';
 
 const Index = () => {
   return (
@@ -12,9 +14,7 @@ const Index = () => {
         <div className="container relative z-10 py-16 md:py-24 lg:py-32">
           <nav className="mb-12 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                <Building2 className="h-6 w-6 text-secondary-foreground" />
-              </div>
+              <img src={logoWhite} alt="Tenantly" className="h-10 w-auto" />
               <span className="font-display text-xl font-bold text-primary-foreground">TenantlyNG</span>
             </div>
             <div className="flex items-center gap-4">
@@ -173,9 +173,7 @@ const Index = () => {
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Building2 className="h-4 w-4 text-primary-foreground" />
-              </div>
+              <img src={logo} alt="Tenantly" className="h-8 w-auto" />
               <span className="font-display font-semibold text-foreground">TenantlyNG</span>
             </div>
             <p className="text-sm text-muted-foreground">
