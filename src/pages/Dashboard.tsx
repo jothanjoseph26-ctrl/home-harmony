@@ -42,6 +42,7 @@ import { ExportButton } from '@/components/dashboard/ExportButton';
 import { LocationChart } from '@/components/dashboard/LocationChart';
 import { SourceChart } from '@/components/dashboard/SourceChart';
 import { SearchFilters } from '@/components/dashboard/SearchFilters';
+import { AdminManagement } from '@/components/dashboard/AdminManagement';
 import logo from '@/assets/tenantly-logo.png';
 
 interface SurveyResponse {
@@ -436,6 +437,11 @@ export default function Dashboard() {
         <div className="grid gap-6 md:grid-cols-2 mb-8">
           <LocationChart responses={responses} />
           <SourceChart responses={responses} />
+        </div>
+
+        {/* Admin Management */}
+        <div className="mb-8">
+          <AdminManagement />
         </div>
 
         {/* Responses Table */}
